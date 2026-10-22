@@ -1,0 +1,27 @@
+{
+  "name": "nexpath-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NexPath web — Supermemory v5 memory layer",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "memory:smoke": "tsx scripts/smoke.ts",
+    "memory:search": "tsx scripts/search.ts",
+    "memory:whoami": "supermemory whoami",
+    "memory:config": "supermemory config",
+    "memory:namespaces": "supermemory namespaces list"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "supermemory": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "dotenv": "^18.0.8",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
