@@ -2,12 +2,12 @@
 
 **Goal:** push this repo to the **Shubham-Sphere** account, with **no CLI login**
 and **no logout** of anything.
-**State:** everything on this machine is prepared. **One browser step is left.**
+**State:** ✅ **DONE.** The SSH key is registered and `main` is pushed.
 **Last updated:** 2026-10-22
 
 ---
 
-## 1. The one action you need to take
+## 1. The one action you needed to take — ✅ completed
 
 Signed in to GitHub as **Shubham-Sphere**, open
 <https://github.com/settings/ssh/new> and add this SSH key:
@@ -20,20 +20,23 @@ Signed in to GitHub as **Shubham-Sphere**, open
 Paste the key as one single line, including the `ssh-ed25519` prefix and the
 `shubham@emptyops.com` suffix. Click **Add SSH key**.
 
-That is the whole remaining task. No token, no `gh auth login`, no `gh auth logout`.
+No token, no `gh auth login`, no `gh auth logout`.
 
 ---
 
-## 2. Then run these two commands
+## 2. Then run these two commands — ✅ both done
 
 ```bash
 cd "/home/jemi/Desktop/NexPath web"
-ssh -T git@github-shubham        # expect: Hi Shubham-Sphere! You've successfully authenticated
-git push -u origin main
+ssh -T git@github-shubham        # -> Hi Shubham-Sphere! You've successfully authenticated, ...
+git push -u origin main          # -> * [new branch]      main -> main
 ```
 
-If the first line prints `Hi Shubham-Sphere!`, the second line pushes everything.
-There is nothing else to configure.
+`ssh -T` exits with code **1 even on success** — GitHub refuses shell access by
+design, so the greeting is the real signal, not the exit code.
+
+Result: `main` now tracks `origin/main` at `a40fca1`.
+Repo: <https://github.com/Shubham-Sphere/NexPath-Web>
 
 ---
 
@@ -79,7 +82,8 @@ active and unmodified.
 | `~/.ssh/config` | Created. Alias `github-shubham` → `github.com`, pinned to `IdentityFile ~/.ssh/id_ed25519_shubham`, `IdentitiesOnly yes` |
 | Plain `github.com` | Still resolves to `~/.ssh/id_ed25519` → `bhavnesh75`. Unchanged. |
 | Repo remote | `origin → git@github-shubham:Shubham-Sphere/NexPath-Web.git` |
-| Commits | `33fae1a` "Rewrite push-fix notes for the Shubham-Sphere SSH-key route", `653d4bb` "Add Supermemory v5 memory layer, smoke-test scripts and push-fix notes", `c8bbc1c` "Initial commit" |
+| Commits | `a40fca1` "Rewrite GIT-PUSH-FIX as a self-contained instruction sheet", `33fae1a` "Rewrite push-fix notes for the Shubham-Sphere SSH-key route", `653d4bb` "Add Supermemory v5 memory layer, smoke-test scripts and push-fix notes", `c8bbc1c` "Initial commit" — all pushed to `origin/main` |
+| Upstream | `Shubham-Sphere/NexPath-Web`, public, default branch `main`, `HEAD = a40fca1` |
 | Secrets | `.env` is gitignored (`git check-ignore -v .env` confirms). Only `.env.example` is tracked. Nothing secret is being pushed. |
 | Supermemory setup | Untouched by any of this. `.env` stays local, `~/.supermemory/` is untouched. |
 
