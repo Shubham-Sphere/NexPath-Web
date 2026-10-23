@@ -2,4 +2,4 @@ We don't need to build anything we are just building the context for our future 
 
 we will get the widgets and content structure from https://hydrahost.com/ and we are providing features/services similar to https://salad.com/
 
-gh auth login --with-token
+all the widgets and contentstrucure part follows https://hydrahost.com/ and features/services follows https://salad.com/

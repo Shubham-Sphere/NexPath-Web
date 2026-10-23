@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Check,
@@ -36,10 +36,7 @@ const demoUrl = "https://youtu.be/pNejtPA5DPU";
 const installCommands = ["npm install -g nexpath-cli", "nexpath install"];
 const pageUrl = "https://parseos.tech/nexpath/home";
 
-
-
 const softwareSchema = {
-
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "NexPath CLI",
@@ -57,12 +54,30 @@ const softwareSchema = {
 };
 
 const faqs: Array<[string, string]> = [
-  ["Is Nexpath another AI coding agent?", "No. Nexpath is a prompt-quality layer that enhances prompts for the agents you already use: Claude Code, Cursor, Windsurf (Devin), Replit, Lovable, and Bolt.new. It doesn't generate code independently or replace your agent; you keep your workflow and review all suggestions before sending."],
-  ["Will Nexpath replace my current agent or workflow?", "No. Nexpath works with the agents and tools you already use; it enhances prompts, not your agent. You retain full control to inspect, edit, or discard suggestions, so your existing agent and workflow remain unchanged."],
-  ["What is a prompt quality layer?", "A prompt quality layer sits between you and your AI coding agent. It reads the prompt you were about to send, identifies what the task actually requires, and returns a stronger version with the scope, acceptance criteria, safety constraints, and rollback considerations the request was missing. You review it and decide what to send."],
-  ["Does Nexpath send my code anywhere?", "No. Your prompts, session state, and settings stay in ~/.nexpath/ on your machine. The only outbound call is the targeted model call that reviews a single prompt. Your repository is never uploaded and your codebase is never indexed."],
-  ["Which AI coding agents does Nexpath support?", "Claude Code, Cursor, Windsurf (Devin), Replit, Lovable, and Bolt.new are fully supported and tested end to end as of v0.1.5. The CLI covers terminal work, the editor extension covers VS Code and its forks, and the browser extension covers browser-based builders."],
-  ["How is this different from CLAUDE.md or Cursor rules?", "Unlike static CLAUDE.md/Cursor rules (predefined, project-wide), Nexpath is a live, user-driven instruction layer at prompt time. It reviews prompt/context, preserves intent, and adds task-specific checks (scope, acceptance, verification, safety, etc.) for higher immediate impact. It's not an AI coding agent; it enhances prompts for agents you already use; you always review and control the final prompt."],
+  [
+    "Is Nexpath another AI coding agent?",
+    "No. Nexpath is a prompt-quality layer that enhances prompts for the agents you already use: Claude Code, Cursor, Windsurf (Devin), Replit, Lovable, and Bolt.new. It doesn't generate code independently or replace your agent; you keep your workflow and review all suggestions before sending.",
+  ],
+  [
+    "Will Nexpath replace my current agent or workflow?",
+    "No. Nexpath works with the agents and tools you already use; it enhances prompts, not your agent. You retain full control to inspect, edit, or discard suggestions, so your existing agent and workflow remain unchanged.",
+  ],
+  [
+    "What is a prompt quality layer?",
+    "A prompt quality layer sits between you and your AI coding agent. It reads the prompt you were about to send, identifies what the task actually requires, and returns a stronger version with the scope, acceptance criteria, safety constraints, and rollback considerations the request was missing. You review it and decide what to send.",
+  ],
+  [
+    "Does Nexpath send my code anywhere?",
+    "No. Your prompts, session state, and settings stay in ~/.nexpath/ on your machine. The only outbound call is the targeted model call that reviews a single prompt. Your repository is never uploaded and your codebase is never indexed.",
+  ],
+  [
+    "Which AI coding agents does Nexpath support?",
+    "Claude Code, Cursor, Windsurf (Devin), Replit, Lovable, and Bolt.new are fully supported and tested end to end as of v0.1.5. The CLI covers terminal work, the editor extension covers VS Code and its forks, and the browser extension covers browser-based builders.",
+  ],
+  [
+    "How is this different from CLAUDE.md or Cursor rules?",
+    "Unlike static CLAUDE.md/Cursor rules (predefined, project-wide), Nexpath is a live, user-driven instruction layer at prompt time. It reviews prompt/context, preserves intent, and adds task-specific checks (scope, acceptance, verification, safety, etc.) for higher immediate impact. It's not an AI coding agent; it enhances prompts for agents you already use; you always review and control the final prompt.",
+  ],
 ];
 
 const faqSchema = {
@@ -74,7 +89,6 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: answer },
   })),
 };
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -101,19 +115,39 @@ export const Route = createFileRoute("/")({
       { type: "application/ld+json", children: JSON.stringify(softwareSchema) },
       { type: "application/ld+json", children: JSON.stringify(faqSchema) },
     ],
-
   }),
   component: Index,
 });
 
 const workflow: Array<[string, string, string, "prompt" | "structured" | "checks" | "choice"]> = [
-  ["01", "Understands", "Reads your prompt and session context to understand what you’re trying to accomplish without changing your intent.", "prompt"],
-  ["02", "Structures", "Turns your intent into a clearer, more complete prompt with the scope and details the agent needs.", "structured"],
-  ["03", "Safeguards", "Adds relevant verification, safety, and rollback checks when the task calls for them.", "checks"],
-  ["04", "Controls", "You choose what to use. Accept, edit, or reject the enhanced prompt and keep your original one anytime.", "choice"],
+  [
+    "01",
+    "Understands",
+    "Reads your prompt and session context to understand what you’re trying to accomplish without changing your intent.",
+    "prompt",
+  ],
+  [
+    "02",
+    "Structures",
+    "Turns your intent into a clearer, more complete prompt with the scope and details the agent needs.",
+    "structured",
+  ],
+  [
+    "03",
+    "Safeguards",
+    "Adds relevant verification, safety, and rollback checks when the task calls for them.",
+    "checks",
+  ],
+  [
+    "04",
+    "Controls",
+    "You choose what to use. Accept, edit, or reject the enhanced prompt and keep your original one anytime.",
+    "choice",
+  ],
 ];
 
-const chromeStoreUrl = "https://chromewebstore.google.com/detail/nexpath/gdkknhjgflkkeajbhalkaakohpoflolc";
+const chromeStoreUrl =
+  "https://chromewebstore.google.com/detail/nexpath/gdkknhjgflkkeajbhalkaakohpoflolc";
 const firefoxStoreUrl = "https://addons.mozilla.org/en-US/firefox/addon/nexpath/";
 
 type ToolGroup = {
@@ -136,7 +170,11 @@ const toolGroups: Array<ToolGroup> = [
     label: "Browser extension",
     icon: extensionIcon,
     iconMono: true,
-    tools: [["Replit", replitIcon, false], ["Lovable", lovableIcon, false], ["Bolt.new", boltIcon, true]],
+    tools: [
+      ["Replit", replitIcon, false],
+      ["Lovable", lovableIcon, false],
+      ["Bolt.new", boltIcon, true],
+    ],
     install: [
       { label: "Chrome Web Store", href: chromeStoreUrl },
       { label: "Firefox Add-ons", href: firefoxStoreUrl },
@@ -146,10 +184,16 @@ const toolGroups: Array<ToolGroup> = [
   {
     label: "VS Code",
     icon: vscodeIcon,
-    tools: [["Cursor", cursorIcon, true], ["Windsurf (Devin)", devinIcon, true]],
+    tools: [
+      ["Cursor", cursorIcon, true],
+      ["Windsurf (Devin)", devinIcon, true],
+    ],
     install: [
       { label: "Open VSX", href: "https://open-vsx.org/extension/nexpath/nexpath-vscode" },
-      { label: "VS Code Marketplace", href: "https://marketplace.visualstudio.com/items?itemName=nexpath.nexpath-vscode" },
+      {
+        label: "VS Code Marketplace",
+        href: "https://marketplace.visualstudio.com/items?itemName=nexpath.nexpath-vscode",
+      },
     ],
     hint: "Works in VS Code forks",
   },
@@ -162,12 +206,13 @@ const toolGroups: Array<ToolGroup> = [
 ];
 
 function ThemeToggle({ className }: { className?: string }) {
-
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem("nexpath-theme");
-    const isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = stored
+      ? stored === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
     setDark(isDark);
     document.documentElement.classList.toggle("dark", isDark);
   }, []);
@@ -180,7 +225,13 @@ function ThemeToggle({ className }: { className?: string }) {
   }
 
   return (
-    <Button variant="ghost" size="icon" className={className} onClick={toggleTheme} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}>
+    <Button
+      variant="ghost"
+      size="icon"
+      className={className}
+      onClick={toggleTheme}
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+    >
       {dark ? <Sun /> : <Moon />}
     </Button>
   );
@@ -196,16 +247,17 @@ function Index() {
       await navigator.clipboard.writeText(installCommands.join("\n"));
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
-    } catch { /* clipboard unavailable */ }
+    } catch {
+      /* clipboard unavailable */
+    }
   }
 
-  const navItems = [
-
-    ["How it works", "#workflow"],
-    ["Benchmark", "#benchmark"],
-    ["Privacy", "#privacy"],
+  const navItems: Array<{ label: string; href: string }> = [
+    { label: "How it works", href: "#workflow" },
+    { label: "Benchmark", href: "#benchmark" },
+    { label: "Enterprise", href: "/enterprise" },
+    { label: "Privacy", href: "#privacy" },
   ];
-
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -213,25 +265,88 @@ function Index() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
           <a href="#top" className="flex items-center gap-2" aria-label="Nexpath home">
             <span className="font-extrabold">Nexpath</span>
-            <span className="hidden rounded-sm border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:inline">CLI</span>
+            <span className="hidden rounded-sm border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:inline">
+              CLI
+            </span>
           </a>
-          <nav className="hidden items-center gap-6 text-sm font-medium text-muted-foreground lg:flex" aria-label="Main navigation">
-            {navItems.map(([label, href]) => <a key={href} className="transition-colors hover:text-foreground" href={href}>{label}</a>)}
+          <nav
+            className="hidden items-center gap-6 text-sm font-medium text-muted-foreground lg:flex"
+            aria-label="Main navigation"
+          >
+            {navItems.map((item) => {
+              const isRoute = item.href.startsWith("/") && !item.href.startsWith("#");
+              return isRoute ? (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="transition-colors hover:text-foreground"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  className="transition-colors hover:text-foreground"
+                  href={item.href}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
           <div className="flex items-center gap-2">
             <Button variant="hero" size="sm" className="hidden sm:inline-flex" asChild>
-              <a href="#tools">Get Started <ArrowRight className="size-4" /></a>
+              <a href="#tools">
+                Get Started <ArrowRight className="size-4" />
+              </a>
             </Button>
-            <Button variant="ghost" size="icon" className="lg:hidden" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((value) => !value)}
+            >
               {menuOpen ? <X /> : <Menu />}
             </Button>
           </div>
         </div>
         {menuOpen && (
-          <nav className="border-t bg-background px-5 py-4 lg:hidden" aria-label="Mobile navigation">
+          <nav
+            className="border-t bg-background px-5 py-4 lg:hidden"
+            aria-label="Mobile navigation"
+          >
             <div className="mx-auto flex max-w-7xl flex-col gap-1">
-              {navItems.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-3 text-sm font-semibold hover:bg-muted">{label}</a>)}
-              <a href="#tools" onClick={() => setMenuOpen(false)} className="mt-2 rounded-md bg-primary px-3 py-3 text-center text-sm font-semibold text-primary-foreground">Get Started <ArrowRight className="inline size-4" /></a>
+              {navItems.map((item) => {
+                const isRoute = item.href.startsWith("/") && !item.href.startsWith("#");
+                return isRoute ? (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-md px-3 py-3 text-sm font-semibold hover:bg-muted"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-md px-3 py-3 text-sm font-semibold hover:bg-muted"
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
+              <a
+                href="#tools"
+                onClick={() => setMenuOpen(false)}
+                className="mt-2 rounded-md bg-primary px-3 py-3 text-center text-sm font-semibold text-primary-foreground"
+              >
+                Get Started <ArrowRight className="inline size-4" />
+              </a>
             </div>
           </nav>
         )}
@@ -241,42 +356,65 @@ function Index() {
         <section className="page-grid relative border-b">
           <div className="absolute inset-0 bg-background/75" />
           <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col px-5 py-16 lg:px-8 lg:py-20">
-          <div className="grid flex-1 items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
-            <div>
-              <div className="inline-flex items-center gap-2 border border-primary/25 bg-success-soft px-3 py-1.5 font-mono text-xs font-medium text-accent-foreground">
-                <Sparkles className="size-3.5" /> Prompt quality layer for AI coding workflows
-              </div>
-              <h1 className="mt-6 max-w-[12ch] text-balance text-5xl font-extrabold leading-[1.02] sm:text-6xl lg:text-7xl">Build fast. Ship with confidence.</h1>
-              <p className="mt-6 max-w-xl text-balance text-lg leading-8 text-muted-foreground">
-                NexPath refines your prompt before your AI agent acts, so the work starts from a clear brief. You choose what gets sent.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button variant="hero" size="xl" asChild><a href="#tools">Get Started <ArrowRight /></a></Button>
+            <div className="grid flex-1 items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
+              <div>
+                <div className="inline-flex items-center gap-2 border border-primary/25 bg-success-soft px-3 py-1.5 font-mono text-xs font-medium text-accent-foreground">
+                  <Sparkles className="size-3.5" /> Prompt quality layer for AI coding workflows
+                </div>
+                <h1 className="mt-6 max-w-[12ch] text-balance text-5xl font-extrabold leading-[1.02] sm:text-6xl lg:text-7xl">
+                  Build fast. Ship with confidence.
+                </h1>
+                <p className="mt-6 max-w-xl text-balance text-lg leading-8 text-muted-foreground">
+                  NexPath refines your prompt before your AI agent acts, so the work starts from a
+                  clear brief. You choose what gets sent.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Button variant="hero" size="xl" asChild>
+                    <a href="#tools">
+                      Get Started <ArrowRight />
+                    </a>
+                  </Button>
 
-                <Button variant="outline" size="xl" asChild><a href={demoUrl} target="_blank" rel="noopener noreferrer"><Play /> Watch demo</a></Button>
+                  <Button variant="outline" size="xl" asChild>
+                    <a href={demoUrl} target="_blank" rel="noopener noreferrer">
+                      <Play /> Watch demo
+                    </a>
+                  </Button>
+                </div>
+                <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
+                  {[
+                    "Enhanced or original, your choice",
+                    "Apache 2.0",
+                    "Works with your coding agent",
+                  ].map((item) => (
+                    <span key={item} className="flex items-center gap-1.5">
+                      <Check className="size-3.5 text-primary" /> {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
-                {["Enhanced or original, your choice", "Apache 2.0", "Works with your coding agent"].map((item) => <span key={item} className="flex items-center gap-1.5"><Check className="size-3.5 text-primary" /> {item}</span>)}
-              </div>
+
+              <figure className="relative overflow-hidden rounded-lg border border-terminal-line bg-terminal shadow-2xl">
+                <img
+                  src={promptReviewScreenshot.url}
+                  alt="Real Nexpath CLI prompt review screen: the original request stays visible while the enhanced prompt breaks it into numbered sections with keyboard controls to send, edit, or return to the original."
+                  className="block w-full"
+                  loading="eager"
+                  width={1118}
+                  height={721}
+                />
+              </figure>
             </div>
-
-            <figure className="relative overflow-hidden rounded-lg border border-terminal-line bg-terminal shadow-2xl">
-              <img
-                src={promptReviewScreenshot.url}
-                alt="Real Nexpath CLI prompt review screen: the original request stays visible while the enhanced prompt breaks it into numbered sections with keyboard controls to send, edit, or return to the original."
-                className="block w-full"
-                loading="eager"
-                width={1118}
-                height={721}
-              />
-            </figure>
-          </div>
           </div>
         </section>
 
         <section id="workflow" className="border-b py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <SectionHeading eyebrow="How it works" title="One thoughtful enhancement before the work begins." description="NexPath strengthens your prompt before the AI agent acts, while keeping you in control." />
+            <SectionHeading
+              eyebrow="How it works"
+              title="One thoughtful enhancement before the work begins."
+              description="NexPath strengthens your prompt before the AI agent acts, while keeping you in control."
+            />
             <HatchedFrame>
               <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
                 {workflow.map(([number, title, description, mock]) => (
@@ -295,7 +433,11 @@ function Index() {
 
         <section id="tools" className="border-b py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <SectionHeading eyebrow="Supported across your workflow" title="Wherever you already build." description="Terminal, editor, or browser, NexPath CLI attaches to the tool you already use." />
+            <SectionHeading
+              eyebrow="Supported across your workflow"
+              title="Wherever you already build."
+              description="Terminal, editor, or browser, NexPath CLI attaches to the tool you already use."
+            />
             <div className="mt-10 grid gap-5 sm:grid-cols-3">
               {toolGroups.map((group) => {
                 const cardClass = cn(
@@ -305,11 +447,21 @@ function Index() {
                 const inner = (
                   <>
                     <GroupHeader group={group} />
-                    <p className="border-b border-border/60 bg-background px-6 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{group.hint}</p>
+                    <p className="border-b border-border/60 bg-background px-6 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                      {group.hint}
+                    </p>
                     <ul className="flex flex-1 flex-col">
                       {group.tools.map(([name, icon, mono]) => (
-                        <li key={name} className="flex items-center gap-3.5 border-b border-border/60 px-6 py-5 transition-colors last:border-b-0 hover:bg-muted/40">
-                          <img src={icon} alt="" aria-hidden="true" className={cn("size-7 shrink-0", mono && "dark:invert")} />
+                        <li
+                          key={name}
+                          className="flex items-center gap-3.5 border-b border-border/60 px-6 py-5 transition-colors last:border-b-0 hover:bg-muted/40"
+                        >
+                          <img
+                            src={icon}
+                            alt=""
+                            aria-hidden="true"
+                            className={cn("size-7 shrink-0", mono && "dark:invert")}
+                          />
                           <span className="text-sm font-bold">{name}</span>
                         </li>
                       ))}
@@ -318,7 +470,12 @@ function Index() {
                   </>
                 );
                 return group.href ? (
-                  <a key={group.label} href={group.href} className={cardClass} aria-label={`${group.label} — see how to add Nexpath to your workflow`}>
+                  <a
+                    key={group.label}
+                    href={group.href}
+                    className={cardClass}
+                    aria-label={`${group.label} — see how to add Nexpath to your workflow`}
+                  >
                     {inner}
                   </a>
                 ) : (
@@ -332,19 +489,41 @@ function Index() {
         </section>
 
         <section id="benchmark" className="border-b py-24">
-
           <div className="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:px-8">
             <div>
-              <span className="inline-block rounded-full border bg-card px-3 py-1 font-mono text-[11px] font-medium text-primary">Measured by project tests.</span>
-              <h2 className="mt-4 text-balance text-4xl font-extrabold leading-tight">SWE-BENCH VERIFIED</h2>
-              <p className="mt-4 text-lg leading-8 text-muted-foreground">Same 40 tasks, same model and setup. NexPath improved the prompt before execution, helping the CLI solve 29 tasks vs. 27 without NexPath.</p>
-              <a href={`${repositoryUrl}/tree/main/Nexpath_benchmark`} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">Read the benchmark report <ExternalLink className="size-4" /></a>
+              <span className="inline-block rounded-full border bg-card px-3 py-1 font-mono text-[11px] font-medium text-primary">
+                Measured by project tests.
+              </span>
+              <h2 className="mt-4 text-balance text-4xl font-extrabold leading-tight">
+                SWE-BENCH VERIFIED
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                Same 40 tasks, same model and setup. NexPath improved the prompt before execution,
+                helping the CLI solve 29 tasks vs. 27 without NexPath.
+              </p>
+              <a
+                href={`${repositoryUrl}/tree/main/Nexpath_benchmark`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline"
+              >
+                Read the benchmark report <ExternalLink className="size-4" />
+              </a>
             </div>
             <div className="border bg-card p-6 shadow-sm sm:p-8">
-              <BenchmarkBar label="Claude Code + Nexpath" score="29/40" percent="72.5%" width="72.5%" highlighted />
+              <BenchmarkBar
+                label="Claude Code + Nexpath"
+                score="29/40"
+                percent="72.5%"
+                width="72.5%"
+                highlighted
+              />
               <BenchmarkBar label="Claude Code" score="27/40" percent="67.5%" width="67.5%" />
               <div className="mt-8 grid gap-4 border-t pt-6 sm:grid-cols-2">
-                <div><strong className="text-2xl">0</strong><p className="mt-1 text-xs text-muted-foreground">Tasks solved without Nexpath</p></div>
+                <div>
+                  <strong className="text-2xl">0</strong>
+                  <p className="mt-1 text-xs text-muted-foreground">Tasks solved without Nexpath</p>
+                </div>
               </div>
             </div>
           </div>
@@ -352,16 +531,49 @@ function Index() {
 
         <section id="privacy" className="border-b py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <SectionHeading eyebrow="Privacy by default" title="Your workflow stays yours." description="Everything stays in ~/.nexpath/. Your repository is never uploaded or indexed." />
+            <SectionHeading
+              eyebrow="Privacy by default"
+              title="Your workflow stays yours."
+              description="Everything stays in ~/.nexpath/. Your repository is never uploaded or indexed."
+            />
             <HatchedFrame>
               <div className="grid gap-px bg-border md:grid-cols-3">
-                <PrivacyFeature icon={<ShieldCheck />} title="Automatic secret redaction" text="API keys, tokens, and PEM blocks are stripped before a prompt is stored." kind="redact" />
-                <PrivacyFeature icon={<CheckCircle2 />} title="Local prompt control" text="Delete, prune, or clear stored prompts with one command." kind="local" />
-                <PrivacyFeature icon={<Sparkles />} title="Targeted guidance only" text="No filler. If there is nothing useful to add, NexPath CLI stays out of the way." kind="guidance" />
+                <PrivacyFeature
+                  icon={<ShieldCheck />}
+                  title="Automatic secret redaction"
+                  text="API keys, tokens, and PEM blocks are stripped before a prompt is stored."
+                  kind="redact"
+                />
+                <PrivacyFeature
+                  icon={<CheckCircle2 />}
+                  title="Local prompt control"
+                  text="Delete, prune, or clear stored prompts with one command."
+                  kind="local"
+                />
+                <PrivacyFeature
+                  icon={<Sparkles />}
+                  title="Targeted guidance only"
+                  text="No filler. If there is nothing useful to add, NexPath CLI stays out of the way."
+                  kind="guidance"
+                />
                 <div className="bg-card px-6 py-5 md:col-span-3">
-                  <p className="font-mono text-[11px] font-medium text-muted-foreground">WHAT NEXPATH IS NOT</p>
+                  <p className="font-mono text-[11px] font-medium text-muted-foreground">
+                    WHAT NEXPATH IS NOT
+                  </p>
                   <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
-                    {["Not a coding agent", "Not a linter or CI", "Runs once, on the prompt, before the agent writes code"].map((item) => <span key={item} className="flex items-center gap-2 text-xs font-medium text-muted-foreground"><X className="size-3.5 text-primary" />{item}</span>)}
+                    {[
+                      "Not a coding agent",
+                      "Not a linter or CI",
+                      "Runs once, on the prompt, before the agent writes code",
+                    ].map((item) => (
+                      <span
+                        key={item}
+                        className="flex items-center gap-2 text-xs font-medium text-muted-foreground"
+                      >
+                        <X className="size-3.5 text-primary" />
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -371,32 +583,69 @@ function Index() {
 
         <section id="faq" className="border-b py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <SectionHeading eyebrow="FAQ" title="Frequently asked questions" description="Short answers to the questions developers ask before adding NexPath CLI to their workflow." />
+            <SectionHeading
+              eyebrow="FAQ"
+              title="Frequently asked questions"
+              description="Short answers to the questions developers ask before adding NexPath CLI to their workflow."
+            />
             <div className="mx-auto mt-10 max-w-3xl divide-y divide-border overflow-hidden rounded-md border bg-card">
-              {faqs.map(([question, answer]) => <FaqItem key={question} question={question} answer={answer} />)}
+              {faqs.map(([question, answer]) => (
+                <FaqItem key={question} question={question} answer={answer} />
+              ))}
             </div>
           </div>
         </section>
 
         <section id="waitlist" className="border-b py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <SectionHeading eyebrow="Early access" title="Join the NexPath waitlist" description="Be first to hear about new NexPath releases, integrations, and early-access features." />
+            <SectionHeading
+              eyebrow="Early access"
+              title="Join the NexPath waitlist"
+              description="Be first to hear about new NexPath releases, integrations, and early-access features."
+            />
             <div className="mx-auto mt-10 max-w-xl rounded-md border bg-card p-6 sm:p-8">
               <LaunchListWidget />
             </div>
           </div>
         </section>
 
-
         <section id="install" className="bg-terminal py-24 text-terminal-foreground">
-
           <div className="mx-auto max-w-5xl px-5 text-center lg:px-8">
-            <h2 className="text-balance text-4xl font-extrabold sm:text-5xl">Improve your prompt for Claude Code.</h2>
+            <h2 className="text-balance text-4xl font-extrabold sm:text-5xl">
+              Improve your prompt for Claude Code.
+            </h2>
             <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-lg border border-terminal-line bg-terminal-soft text-left font-mono text-xs sm:text-sm">
-              <div className="flex items-center justify-between border-b border-terminal-line px-4 py-3"><span className="text-terminal-muted">terminal</span><Button variant="ghost" size="sm" onClick={copyInstallCommands} className="text-terminal-muted hover:bg-terminal hover:text-terminal-foreground" aria-label={copied ? "Copied" : "Copy install commands"}>{copied ? <Check /> : <Clipboard />}</Button></div>
-              <pre className="overflow-x-auto p-5 leading-7 text-terminal-foreground"><code><span className="text-success">$</span> {installCommands[0]}{"\n"}<span className="text-success">$</span> {installCommands[1]}</code></pre>
+              <div className="flex items-center justify-between border-b border-terminal-line px-4 py-3">
+                <span className="text-terminal-muted">terminal</span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={copyInstallCommands}
+                  className="text-terminal-muted hover:bg-terminal hover:text-terminal-foreground"
+                  aria-label={copied ? "Copied" : "Copy install commands"}
+                >
+                  {copied ? <Check /> : <Clipboard />}
+                </Button>
+              </div>
+              <pre className="overflow-x-auto p-5 leading-7 text-terminal-foreground">
+                <code>
+                  <span className="text-success">$</span> {installCommands[0]}
+                  {"\n"}
+                  <span className="text-success">$</span> {installCommands[1]}
+                </code>
+              </pre>
             </div>
-            <div className="mt-8 flex justify-center"><Button variant="hero" size="xl" asChild><a href="https://github.com/hi0001234d/nexpath#add-nexpath-to-your-development-workflow--installation" target="_blank" rel="noopener noreferrer"><Github /> View on GitHub</a></Button></div>
+            <div className="mt-8 flex justify-center">
+              <Button variant="hero" size="xl" asChild>
+                <a
+                  href="https://github.com/hi0001234d/nexpath#add-nexpath-to-your-development-workflow--installation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github /> View on GitHub
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
@@ -404,6 +653,12 @@ function Index() {
       <footer className="border-t border-terminal-line bg-terminal text-terminal-muted">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-5 py-6 text-xs sm:flex-row sm:justify-between lg:px-8">
           <p>NexPath CLI · Built during MLH AI Hackfest 2026</p>
+          <Link
+            to="/enterprise"
+            className="text-terminal-muted hover:text-terminal-foreground transition-colors"
+          >
+            Enterprise
+          </Link>
           <div className="flex items-center gap-5">
             <div className="flex items-center gap-1.5" aria-label="Social media">
               <a
@@ -481,7 +736,12 @@ function DiscordIcon({ className }: { className?: string }) {
 
 function HatchedFrame({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("mx-auto mt-12 grid max-w-5xl grid-cols-[1rem_1fr_1rem] border sm:grid-cols-[2rem_1fr_2rem]", className)}>
+    <div
+      className={cn(
+        "mx-auto mt-12 grid max-w-5xl grid-cols-[1rem_1fr_1rem] border sm:grid-cols-[2rem_1fr_2rem]",
+        className,
+      )}
+    >
       <div className="hatch border-r" aria-hidden="true" />
       {children}
       <div className="hatch border-l" aria-hidden="true" />
@@ -490,17 +750,81 @@ function HatchedFrame({ children, className }: { children: ReactNode; className?
 }
 
 function StepMockup({ kind }: { kind: "prompt" | "structured" | "checks" | "choice" }) {
-
-  const box = "rounded-md border border-terminal-line bg-terminal p-3 font-mono text-[11px] leading-5 text-terminal-foreground";
-  if (kind === "prompt") return <div className={box}><p className="text-terminal-muted">prompt</p><p className="mt-1">Add password reset.<span className="cursor-blink ml-0.5 inline-block h-3 w-1.5 bg-primary align-middle" /></p></div>;
-  if (kind === "structured") return <div className={box}>{[["Goal", "reset flow"], ["Scope", "login page"], ["Accept", "tests pass"]].map(([k, v]) => <p key={k}><span className="text-primary">{k}:</span> <span className="text-terminal-muted">{v}</span></p>)}</div>;
-  if (kind === "checks") return <div className={box}>{["Scope", "Safety", "Rollback"].map((c) => <p key={c} className="flex items-center gap-2"><Check className="size-3.5 text-primary" />{c}</p>)}</div>;
-  return <div className={cn(box, "flex gap-1.5")}>{["Accept", "Edit", "Reject"].map((c, i) => <span key={c} className={cn("flex-1 rounded border border-terminal-line px-1 py-1 text-center text-terminal-muted", i === 0 && "border-primary bg-primary text-primary-foreground")}>{c}</span>)}</div>;
+  const box =
+    "rounded-md border border-terminal-line bg-terminal p-3 font-mono text-[11px] leading-5 text-terminal-foreground";
+  if (kind === "prompt")
+    return (
+      <div className={box}>
+        <p className="text-terminal-muted">prompt</p>
+        <p className="mt-1">
+          Add password reset.
+          <span className="cursor-blink ml-0.5 inline-block h-3 w-1.5 bg-primary align-middle" />
+        </p>
+      </div>
+    );
+  if (kind === "structured")
+    return (
+      <div className={box}>
+        {[
+          ["Goal", "reset flow"],
+          ["Scope", "login page"],
+          ["Accept", "tests pass"],
+        ].map(([k, v]) => (
+          <p key={k}>
+            <span className="text-primary">{k}:</span>{" "}
+            <span className="text-terminal-muted">{v}</span>
+          </p>
+        ))}
+      </div>
+    );
+  if (kind === "checks")
+    return (
+      <div className={box}>
+        {["Scope", "Safety", "Rollback"].map((c) => (
+          <p key={c} className="flex items-center gap-2">
+            <Check className="size-3.5 text-primary" />
+            {c}
+          </p>
+        ))}
+      </div>
+    );
+  return (
+    <div className={cn(box, "flex gap-1.5")}>
+      {["Accept", "Edit", "Reject"].map((c, i) => (
+        <span
+          key={c}
+          className={cn(
+            "flex-1 rounded border border-terminal-line px-1 py-1 text-center text-terminal-muted",
+            i === 0 && "border-primary bg-primary text-primary-foreground",
+          )}
+        >
+          {c}
+        </span>
+      ))}
+    </div>
+  );
 }
 
-
-function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
-  return <div className="mx-auto max-w-3xl text-center"><span className="inline-block rounded-full border bg-card px-3 py-1 font-mono text-[11px] font-medium text-primary">{eyebrow.toUpperCase()}</span><h2 className="mt-4 text-balance text-3xl font-extrabold leading-tight sm:text-4xl">{title}</h2><p className="mt-3 text-base leading-7 text-muted-foreground">{description}</p></div>;
+function SectionHeading({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="mx-auto max-w-3xl text-center">
+      <span className="inline-block rounded-full border bg-card px-3 py-1 font-mono text-[11px] font-medium text-primary">
+        {eyebrow.toUpperCase()}
+      </span>
+      <h2 className="mt-4 text-balance text-3xl font-extrabold leading-tight sm:text-4xl">
+        {title}
+      </h2>
+      <p className="mt-3 text-base leading-7 text-muted-foreground">{description}</p>
+    </div>
+  );
 }
 
 function FaqItem({ question, answer }: { question: string; answer: string }) {
@@ -514,15 +838,50 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
         className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/40 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary"
       >
         <h3 className="flex-1 text-sm font-bold sm:text-base">{question}</h3>
-        <ChevronDown className={cn("size-4 shrink-0 text-primary transition-transform duration-200", open && "rotate-180")} />
+        <ChevronDown
+          className={cn(
+            "size-4 shrink-0 text-primary transition-transform duration-200",
+            open && "rotate-180",
+          )}
+        />
       </button>
       {open && <p className="px-5 pb-5 text-sm leading-6 text-muted-foreground">{answer}</p>}
     </div>
   );
 }
 
-function BenchmarkBar({ label, score, percent, width, highlighted = false }: { label: string; score: string; percent: string; width: string; highlighted?: boolean }) {
-  return <div className="mb-7 last:mb-0"><div className="mb-3 flex items-end justify-between gap-3"><div><p className="font-bold">{label}</p><p className="mt-1 font-mono text-xs text-muted-foreground">{percent} solved</p></div><strong className={`text-2xl ${highlighted ? "text-primary" : "text-foreground"}`}>{score}</strong></div><div className="h-3 overflow-hidden bg-muted"><div className={highlighted ? "h-full bg-primary" : "h-full bg-muted-foreground/35"} style={{ width }} /></div></div>;
+function BenchmarkBar({
+  label,
+  score,
+  percent,
+  width,
+  highlighted = false,
+}: {
+  label: string;
+  score: string;
+  percent: string;
+  width: string;
+  highlighted?: boolean;
+}) {
+  return (
+    <div className="mb-7 last:mb-0">
+      <div className="mb-3 flex items-end justify-between gap-3">
+        <div>
+          <p className="font-bold">{label}</p>
+          <p className="mt-1 font-mono text-xs text-muted-foreground">{percent} solved</p>
+        </div>
+        <strong className={`text-2xl ${highlighted ? "text-primary" : "text-foreground"}`}>
+          {score}
+        </strong>
+      </div>
+      <div className="h-3 overflow-hidden bg-muted">
+        <div
+          className={highlighted ? "h-full bg-primary" : "h-full bg-muted-foreground/35"}
+          style={{ width }}
+        />
+      </div>
+    </div>
+  );
 }
 
 function GroupHeader({ group }: { group: ToolGroup }) {
@@ -550,7 +909,9 @@ function GroupHeader({ group }: { group: ToolGroup }) {
       <header className="px-5 pb-4 pt-5">
         <div className="flex w-full items-center gap-2.5 rounded-sm border bg-background px-3 py-2.5">
           <SquareTerminal className="size-5 shrink-0 text-primary" aria-hidden="true" />
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-foreground">{group.label}</span>
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-foreground">
+            {group.label}
+          </span>
         </div>
       </header>
     );
@@ -569,12 +930,30 @@ function GroupHeader({ group }: { group: ToolGroup }) {
             open && "border-primary/40",
           )}
         >
-          {group.icon && <img src={group.icon} alt="" aria-hidden="true" className={cn("size-5 shrink-0", group.iconMono && "dark:invert")} />}
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-foreground">{group.label}</span>
-          <ChevronDown className={cn("ml-auto size-4 shrink-0 text-primary transition-transform duration-200", open && "rotate-180")} />
+          {group.icon && (
+            <img
+              src={group.icon}
+              alt=""
+              aria-hidden="true"
+              className={cn("size-5 shrink-0", group.iconMono && "dark:invert")}
+            />
+          )}
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-foreground">
+            {group.label}
+          </span>
+          <ChevronDown
+            className={cn(
+              "ml-auto size-4 shrink-0 text-primary transition-transform duration-200",
+              open && "rotate-180",
+            )}
+          />
         </button>
         {open && (
-          <div role="menu" aria-label={`${group.label} install options`} className="absolute left-0 top-full z-20 mt-2 w-56 rounded-md border bg-card p-1 shadow-lg">
+          <div
+            role="menu"
+            aria-label={`${group.label} install options`}
+            className="absolute left-0 top-full z-20 mt-2 w-56 rounded-md border bg-card p-1 shadow-lg"
+          >
             {group.install.map((option) => (
               <a
                 key={option.label}
@@ -596,18 +975,56 @@ function GroupHeader({ group }: { group: ToolGroup }) {
   );
 }
 
-
-
-function PrivacyFeature({ icon, title, text, kind }: { icon: ReactNode; title: string; text: string; kind: "redact" | "local" | "guidance" }) {
+function PrivacyFeature({
+  icon,
+  title,
+  text,
+  kind,
+}: {
+  icon: ReactNode;
+  title: string;
+  text: string;
+  kind: "redact" | "local" | "guidance";
+}) {
   return (
     <article className="flex min-h-80 flex-col bg-card p-6 sm:p-8">
-      <span className="grid size-10 place-items-center rounded-md bg-success-soft text-primary [&_svg]:size-5">{icon}</span>
+      <span className="grid size-10 place-items-center rounded-md bg-success-soft text-primary [&_svg]:size-5">
+        {icon}
+      </span>
       <h3 className="mt-5 text-lg font-bold">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{text}</p>
       <div className="mt-auto pt-8">
-        {kind === "redact" && <div className="rounded-md border bg-background p-3 font-mono text-[10px]"><p className="text-muted-foreground">API_KEY=<span className="text-destructive line-through">sk-live-••••••</span></p><p className="mt-2 flex items-center gap-1.5 text-primary"><ShieldCheck className="size-3.5" /> Secret removed before storage</p></div>}
-        {kind === "local" && <div className="rounded-md border bg-background p-3 font-mono text-[10px]"><p className="text-muted-foreground">$ nexpath history --clear</p><p className="mt-2 flex items-center gap-1.5 text-primary"><Check className="size-3.5" /> Local history cleared</p></div>}
-        {kind === "guidance" && <div className="rounded-md border bg-background p-3 font-mono text-[10px]"><div className="flex items-center justify-between gap-3"><span className="text-muted-foreground">review.signal</span><span className="rounded border border-primary/30 bg-success-soft px-1.5 py-0.5 text-primary">useful only</span></div><div className="mt-3 h-1.5 overflow-hidden bg-muted"><div className="h-full w-3/4 bg-primary" /></div></div>}
+        {kind === "redact" && (
+          <div className="rounded-md border bg-background p-3 font-mono text-[10px]">
+            <p className="text-muted-foreground">
+              API_KEY=<span className="text-destructive line-through">sk-live-••••••</span>
+            </p>
+            <p className="mt-2 flex items-center gap-1.5 text-primary">
+              <ShieldCheck className="size-3.5" /> Secret removed before storage
+            </p>
+          </div>
+        )}
+        {kind === "local" && (
+          <div className="rounded-md border bg-background p-3 font-mono text-[10px]">
+            <p className="text-muted-foreground">$ nexpath history --clear</p>
+            <p className="mt-2 flex items-center gap-1.5 text-primary">
+              <Check className="size-3.5" /> Local history cleared
+            </p>
+          </div>
+        )}
+        {kind === "guidance" && (
+          <div className="rounded-md border bg-background p-3 font-mono text-[10px]">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-muted-foreground">review.signal</span>
+              <span className="rounded border border-primary/30 bg-success-soft px-1.5 py-0.5 text-primary">
+                useful only
+              </span>
+            </div>
+            <div className="mt-3 h-1.5 overflow-hidden bg-muted">
+              <div className="h-full w-3/4 bg-primary" />
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );
@@ -626,10 +1043,25 @@ function LaunchListWidget() {
     document.head.appendChild(script);
   }, []);
   return (
-    <form className="launchlist-form flex flex-col gap-3" action="https://getlaunchlist.com/s/KLWIOj" method="POST">
-      <label htmlFor="waitlist-email" className="sr-only">Email address</label>
-      <input id="waitlist-email" name="email" type="email" required placeholder="Enter your email" className="h-11 rounded-md border border-input bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
-      <Button type="submit" size="lg" className="h-11 w-full">Sign Up</Button>
+    <form
+      className="launchlist-form flex flex-col gap-3"
+      action="https://getlaunchlist.com/s/KLWIOj"
+      method="POST"
+    >
+      <label htmlFor="waitlist-email" className="sr-only">
+        Email address
+      </label>
+      <input
+        id="waitlist-email"
+        name="email"
+        type="email"
+        required
+        placeholder="Enter your email"
+        className="h-11 rounded-md border border-input bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      />
+      <Button type="submit" size="lg" className="h-11 w-full">
+        Sign Up
+      </Button>
     </form>
   );
 }
