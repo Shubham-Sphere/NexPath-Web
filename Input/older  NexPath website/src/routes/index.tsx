@@ -256,6 +256,7 @@ function Index() {
     { label: "How it works", href: "#workflow" },
     { label: "Benchmark", href: "#benchmark" },
     { label: "Enterprise", href: "/enterprise" },
+    { label: "Waitlist", href: "/waitlist" },
     { label: "Privacy", href: "#privacy" },
   ];
 
