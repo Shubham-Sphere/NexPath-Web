@@ -80,6 +80,13 @@ function Dashboard() {
 
   const cols = COLUMNS.filter((c) => visible[c.key]);
 
+  function formatJoined(iso: string) {
+    const d = new Date(iso);
+    const within24h = Date.now() - d.getTime() < 24 * 60 * 60 * 1000;
+    if (within24h) return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    return d.toLocaleDateString([], { day: "2-digit", month: "short", year: "numeric" });
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
@@ -128,23 +135,25 @@ function Dashboard() {
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead className="w-12 text-muted-foreground">#</TableHead>
                 {cols.map((c) => <TableHead key={c.key}>{c.label}</TableHead>)}
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {loading ? (
-                <TableRow><TableCell colSpan={cols.length + 1} className="py-10 text-center text-muted-foreground">Loading…</TableCell></TableRow>
+                <TableRow><TableCell colSpan={cols.length + 2} className="py-10 text-center text-muted-foreground">Loading…</TableCell></TableRow>
               ) : filtered.length === 0 ? (
-                <TableRow><TableCell colSpan={cols.length + 1} className="py-10 text-center text-muted-foreground">No entries found</TableCell></TableRow>
+                <TableRow><TableCell colSpan={cols.length + 2} className="py-10 text-center text-muted-foreground">No entries found</TableCell></TableRow>
               ) : (
-                filtered.map((r) => (
+                filtered.map((r, i) => (
                   <TableRow key={r.id}>
+                    <TableCell className="text-muted-foreground">{i + 1}</TableCell>
                     {visible.email && <TableCell className="font-medium">{r.email}</TableCell>}
                     {visible.name && <TableCell>{r.name ?? "—"}</TableCell>}
                     {visible.joined_at && (
                       <TableCell className="whitespace-nowrap text-muted-foreground">
-                        {r.joined_at ? new Date(r.joined_at).toLocaleString() : "—"}
+                        {r.joined_at ? formatJoined(r.joined_at) : "—"}
                       </TableCell>
                     )}
                     <TableCell className="text-right whitespace-nowrap">
