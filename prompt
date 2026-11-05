@@ -1,170 +1,124 @@
-Update the existing NexPath home page from the second-revision landing copy.
+Update the existing NexPath home page. Keep every section that is already on the page exactly as it is: same title, copy, layout, links, and position. Do not restyle, rewrite, reorder, or delete those older sections.
 
-Do not edit, restyle, rename, reorder, or delete any section that is already on the page. Leave its title, copy, layout, links, and position exactly as they are. In particular, the 4th section title must stay exactly:
+Add only these three new sections. Do not add any other section from the revision.
+
+1. ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK
+2. BACKGROUND MODE & HUMAN-IN-THE-LOOP DEVELOPMENT
+3. OPEN SOURCE & ENTERPRISE CAPABILITIES
+
+The title of the enterprise section must be exactly:
 
 ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK
 
-Do not fold new copy into that section or into any other existing section.
+Do not shorten it, rephrase it, or replace it with "Enterprise Capabilities" or any other heading. "ENTERPRISE CAPABILITIES" is only the small eyebrow above that title.
 
-Add only the sections below that are not already on the page. Build each one as a new section in the current visual system. Insert it at the stated position. If an equivalent section is already present, skip it and do not rewrite it.
+Insert them in this order, without moving the sections that already exist:
 
-Page order to respect when inserting. Existing sections stay where they are; new sections slot into this sequence:
+- After the existing "How it works" section, add ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK.
+- Immediately after that new enterprise section, add BACKGROUND MODE & HUMAN-IN-THE-LOOP DEVELOPMENT.
+- After the existing Privacy section and before the existing FAQ, add OPEN SOURCE & ENTERPRISE CAPABILITIES.
 
-1. Hero
-2. Prompt Enhancement
-3. Context Engineering & Project Memory
-4. ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK (existing — do not change)
-5. Work with different coding agents (new, immediately after section 4)
-6. Put your internal GPUs to work (new, immediately after the coding-agents section)
-7. Background Mode & Human-in-the-Loop
-8. Supported across your workflow
-9. SWE-Bench Verified
-10. Privacy & Security
-11. What NexPath is — and isn't
-12. Open source & Enterprise
-13. FAQ
-14. Final CTA
+Use the copy below verbatim for eyebrows, titles, headlines, body, and the call to action. Do not invent claims, metrics, or product names. No download button.
 
-No download button. Do not invent claims, metrics, or product names. Primary buttons say "Join Waitlist" and use the existing waitlist flow. "Explore GitHub" and "Explore the Open-Source Project" use the existing repository URL. "Read the Benchmark Report" uses the existing benchmark URL.
+Each new section must look different from the other two and different from every section already on the page. Do not reuse one card grid, one heading block, or one background treatment three times. Give each new section its own composition, spacing, and visual idea, while staying inside the current site colors, type, and overall brand. Existing sections stay visually unchanged.
 
 ---
 
-NEW — insert immediately after the existing section titled "ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK". Do not change that section.
+1. ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK
+
+Place after "How it works".
 
 Eyebrow: ENTERPRISE CAPABILITIES
-Title: Work with different coding agents and keep context aligned
+Title: ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK
 
+Headline: Your code. Your infrastructure. Your control.
+
+Body: AI-assisted development introduces an important question: where does your project information go when a coding agent processes it?
+
+NexPath brings privacy-focused local AI workflows to developers who need greater control over how their code and project context are processed.
+
+Use your internal device network
+Connect supported internal devices and use compatible local models running on your own hardware, including GPUs where supported.
+
+Activate Data Privacy Mode
+When Data Privacy Mode is enabled and correctly configured, model inference in the protected workflow is restricted to designated internal models rather than external model APIs. Your code and project information for that inference remain within the configured internal device network.
+
+If a task needs a capability that the configured internal models cannot provide, NexPath brings you into the decision. Data Privacy Mode does not silently fall back to an external model API.
+
+Work with different coding agents and keep context aligned
 Use different coding agents for different tasks. Context Engineering helps keep important project context available as you switch, so you do not have to rebuild the same project understanding each time.
 
 NexPath can also bring you into the loop when a task may be handled by a more suitable or more cost-effective agent. Smaller tasks that do not need a premium model may be handled by an appropriate lower-cost or local option, helping reduce unnecessary subscription or token costs without lowering the quality bar for the work.
 
----
-
-NEW — insert immediately after "Work with different coding agents and keep context aligned".
-
-Eyebrow: ENTERPRISE CAPABILITIES
-Title: Put your internal GPUs to work
-
+Put your internal GPUs to work
 You do not need to manually choose a local model for every task. When Data Privacy Mode is on, suitable work is routed to compatible models on your configured internal device network. Model selection is automatic within that protected setup; external model APIs are not used. Suitability and performance depend on the model, hardware, and task.
 
+Support mature software engineering
+Enterprise capabilities extend the open-source foundation with evidence-based software engineering workflows that support maintainability and more deliberate verification.
+
+Supporting line: Enterprise privacy capabilities, with the focus still on better software engineering and developer control.
+
 ---
 
-Add each of the following only if that section is not already on the page. If it exists, leave it unchanged.
+2. BACKGROUND MODE & HUMAN-IN-THE-LOOP DEVELOPMENT
 
-HERO — only create if the page has no hero. Do not replace the current hero.
-
-Eyebrow: THE HUMAN-IN-THE-LOOP LAYER FOR AI CODING
-Headline: Your AI coding agents can do the work. NexPath helps make sure they do the right work.
-Body: NexPath works alongside your coding agents to improve software engineering guidance, maintain project context, and bring you into the loop when your judgment matters.
-From better prompts to background verification and privacy-focused local AI workflows, NexPath helps you build more maintainable software while optimizing time and token costs.
-CTA: Join Waitlist
-Highlights: Human-in-the-loop development; Intelligent context engineering; Background verification; Privacy-focused local AI
-
-PROMPT ENHANCEMENT — insert after the hero if missing.
-
-Eyebrow: PROMPT ENHANCEMENT
-Headline: Better guidance before your coding agent starts.
-Body: A coding agent is only as effective as the instructions and context it receives. NexPath strengthens your prompts with relevant software engineering guidance, helping your agent work toward clearer requirements, better implementation decisions, and more maintainable code.
-Understand your intent — NexPath considers your request and relevant session context to understand what you want to accomplish without unnecessarily changing your original intent.
-Structure the task — It organizes your requirements into a clearer, more actionable prompt that helps your coding agent understand the intended scope and expected outcome.
-Apply software engineering guidance — Relevant guidance can help your agent account for maintainability, verification, safety, and other engineering considerations appropriate to the task.
-Keep control when it matters — Prompt enhancement can run automatically, with a six-second cancellation window so you can stop the automatic enhancement when necessary. NexPath aims to reduce unnecessary interruptions while keeping you in control of how your coding workflow operates.
-Supporting line: Less time refining instructions. More attention on the engineering decisions that matter.
-
-CONTEXT ENGINEERING & PROJECT MEMORY — insert after Prompt Enhancement if missing.
-
-Eyebrow: INTELLIGENT CONTEXT
-Headline: Your project has a memory. Your coding agent should have the right context, too.
-Body: Important project decisions do not always belong to the current conversation. Architecture choices, earlier implementation details, established conventions, and lessons learned can remain relevant long after the original discussion. NexPath's Context Engineering capabilities are designed to help preserve that knowledge and bring relevant context back when it matters.
-Remember beyond the current session — Important project context can remain useful even when it was recorded weeks or months earlier.
-Learn project patterns — Pattern recognition helps identify recurring information and relationships within a project's accumulated context.
-Retrieve what matters for the task — Instead of relying exclusively on whatever happens to be present in the current conversation, NexPath aims to make relevant historical context available when a task calls for it.
-Maintain continuity across coding agents — When you move between coding agents, relevant project knowledge can help keep their understanding aligned with the decisions and conventions established earlier.
-Supporting line: Not just longer memory. More useful context at the right time.
-Note: Context Engineering is part of NexPath's open-source foundation.
-
-BACKGROUND MODE — insert after the new GPU section if missing.
+Place immediately after ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK.
 
 Eyebrow: MORE PRODUCTIVE DEVELOPMENT
+Title: BACKGROUND MODE & HUMAN-IN-THE-LOOP DEVELOPMENT
+
 Headline: Let suitable work run in the background. Step in when your judgment matters.
-Body: Not every development task needs your attention from beginning to end. Testing, verification, and other suitable follow-up work can take time, even when they do not need continuous supervision. Start background mode when you want a suitable task to continue while you focus on other work, or let NexPath surface the option when a task is ready for background verification. Work can make progress while you are waiting on a coding agent or using time when a subscription would otherwise be idle.
-Save time and optimize token costs — For suitable tasks, NexPath can use a more cost-effective coding agent or a configured local model instead of routing every step through a premium model. This can reduce unnecessary token costs while the primary coding agent remains available for work that needs it. The agent and model should still fit the task. Cost optimization does not mean accepting weaker verification or compromising the quality required for the work.
-Return to the loop when it matters — Background work does not remove you from important decisions. When a task needs clarification, approval, or engineering judgment, NexPath brings you back into the loop. You remain the decision-maker. The aim is to save waiting time and reduce repetitive coordination while keeping you involved where your judgment makes a difference.
+
+Body: Not every development task needs your attention from beginning to end. Testing, verification, and other suitable follow-up work can take time, even when they do not need continuous supervision.
+
+Start background mode when you want a suitable task to continue while you focus on other work, or let NexPath surface the option when a task is ready for background verification. Work can make progress while you are waiting on a coding agent or using time when a subscription would otherwise be idle.
+
+Save time and optimize token costs
+For suitable tasks, NexPath can use a more cost-effective coding agent or a configured local model instead of routing every step through a premium model. This can reduce unnecessary token costs while the primary coding agent remains available for work that needs it.
+
+The agent and model should still fit the task. Cost optimization does not mean accepting weaker verification or compromising the quality required for the work.
+
+Return to the loop when it matters
+Background work does not remove you from important decisions. When a task needs clarification, approval, or engineering judgment, NexPath brings you back into the loop.
+
+You remain the decision-maker. The aim is to save waiting time and reduce repetitive coordination while keeping you involved where your judgment makes a difference.
+
 Supporting line: Spend less time waiting. Reduce unnecessary token costs. Stay involved where your judgment matters.
 
-SUPPORTED ACROSS YOUR WORKFLOW — insert after Background Mode if missing. Premium capabilities are Desktop App only.
+---
 
-Eyebrow: BUILT AROUND YOUR DEVELOPMENT WORKFLOW
-Headline: Your tools. Your workflow. One familiar way to work.
-Body: NexPath is designed to complement the tools developers already use rather than require an entirely different development process.
-NexPath Desktop App — The Desktop App is the current home of NexPath's premium capabilities, including Data Privacy Mode, the internal device network, and supported background workflows.
-Browser Extension — Use the browser extension for its supported NexPath functionality within compatible browser-based workflows. Premium capabilities are not currently available through the Browser Extension.
-VS Code Extension — Bring supported NexPath functionality into compatible editor workflows. Premium capabilities are not currently available through the VS Code Extension.
-NexPath CLI — Access supported command-line functionality from your terminal. Premium capabilities are not currently available through the CLI.
-Supporting line: Premium capabilities are currently available through the Desktop App only.
+3. OPEN SOURCE & ENTERPRISE CAPABILITIES
 
-SWE-BENCH VERIFIED — insert after Supported workflow if missing.
-
-Eyebrow: MEASURED BY PROJECT TESTS
-Headline: Better prompts. Measurable results.
-Body: Prompt quality should be evaluated through evidence, not just claims. In the reported NexPath CLI evaluation using 40 SWE-Bench Verified tasks, Claude Code solved 29 tasks with NexPath's prompt enhancement, compared with 27 tasks without NexPath under the stated test setup.
-With NexPath: 29 of 40 tasks solved — 72.5%
-Without NexPath: 27 of 40 tasks solved — 67.5%
-The results indicate an improvement in the number of tasks solved in this particular evaluation. The benchmark should be interpreted within its stated experimental setup. It does not establish that every task, model, coding agent, or development environment will experience the same improvement.
-CTA: Read the Benchmark Report
-
-PRIVACY & SECURITY — insert after SWE-Bench if missing.
-
-Eyebrow: PRIVACY BY DESIGN
-Headline: Understand where your project information goes.
-Body: Developers should be able to make informed decisions about how their project information is handled. NexPath's privacy approach includes local handling of supported data, protections for stored information, and additional privacy-focused workflows through its internal device network.
-Local data handling — Supported local functionality can keep its associated data on your device rather than requiring repository uploads to NexPath.
-Secret redaction — Supported prompt-storage workflows can remove recognized secrets, such as API keys and tokens, before storing prompts.
-Control over local history — Manage or clear locally stored prompt history through the supported controls.
-Local-model inference — When Data Privacy Mode is enabled and correctly configured, supported model inference can be restricted to your internal device network. This helps developers use compatible local models for workflows that require greater control over external model API usage.
-Callout: Important distinction: Local storage, secret redaction, and local-model inference are different protections. Their guarantees should be documented separately so users understand what each feature does and what remains outside its scope.
-
-WHAT NEXPATH IS — AND ISN'T — insert after Privacy & Security if missing.
-
-Eyebrow: A DIFFERENT LAYER IN YOUR WORKFLOW
-Headline: NexPath works with your coding agents, not instead of them.
-Body: NexPath is designed to improve the way you work with AI coding agents while keeping developers involved in important decisions. It is not intended to replace every coding agent with a new, all-in-one agent.
-NexPath is a human-in-the-loop layer — It helps improve prompts, maintain relevant project context, support suitable background workflows, and involve developers when their input matters.
-NexPath is not another coding agent — You can continue using the coding agents that suit your tasks and workflow.
-NexPath is not a replacement for engineering judgment — Automation can reduce repetitive work, but developers remain responsible for important technical decisions, appropriate verification, and the quality of the resulting software.
-NexPath is not simply a prompt wrapper — Its broader direction includes context engineering, privacy-focused local workflows, and ways to make interactions between developers and coding agents more effective.
-Supporting line: Your coding agents do the work. NexPath helps make the workflow more effective, controlled, and maintainable.
-
-OPEN SOURCE & ENTERPRISE CAPABILITIES — insert after What NexPath is if missing.
+Place after the existing Privacy section and before the existing FAQ.
 
 Eyebrow: OPEN SOURCE, WITH MORE TO EXPLORE
+Title: OPEN SOURCE & ENTERPRISE CAPABILITIES
+
 Headline: An open-source foundation. Additional capabilities for demanding workflows.
-Body: NexPath's open-source foundation is central to its identity. Prompt Enhancement is already open source, and Context Engineering is part of the open-source foundation. Additional Enterprise capabilities extend beyond the open-source experience. They include evidence-based software engineering workflows and privacy-focused use of an internal device network.
-Open-source capabilities — Explore the available open-source functionality, inspect the implementation, and understand how NexPath fits into your development workflow.
-Context Engineering — Context Engineering helps preserve useful project knowledge and make relevant context available across development tasks and coding agents.
-Additional Enterprise capabilities — Enterprise capabilities extend the experience with supported advanced software engineering workflows and privacy-focused local-model infrastructure. These capabilities are intended for developers and organizations with additional requirements around engineering practices, infrastructure, and data handling.
+
+Body: NexPath's open-source foundation is central to its identity. Prompt Enhancement is already open source, and Context Engineering is part of the open-source foundation.
+
+Additional Enterprise capabilities extend beyond the open-source experience. They include evidence-based software engineering workflows and privacy-focused use of an internal device network.
+
+Open-source capabilities
+Explore the available open-source functionality, inspect the implementation, and understand how NexPath fits into your development workflow.
+
+Context Engineering
+Context Engineering helps preserve useful project knowledge and make relevant context available across development tasks and coding agents.
+
+Additional Enterprise capabilities
+Enterprise capabilities extend the experience with supported advanced software engineering workflows and privacy-focused local-model infrastructure.
+
+These capabilities are intended for developers and organizations with additional requirements around engineering practices, infrastructure, and data handling.
+
 CTA: Explore the Open-Source Project
+Link this to the existing GitHub repository.
 
-FAQ — insert before the final CTA if missing. Accordion. Do not add or rewrite questions on an existing FAQ.
+---
 
-Is NexPath another AI coding agent? — No. NexPath is designed to work alongside coding agents. It improves the surrounding workflow through prompt enhancement, context engineering, and supported human-in-the-loop capabilities.
-What does NexPath's human-in-the-loop approach mean? — It means keeping developers involved where their judgment, decisions, or intervention matter, while reducing unnecessary manual work through supported automation.
-What is Prompt Enhancement? — Prompt Enhancement improves the clarity, structure, and relevant engineering guidance of a developer's request before the coding agent acts.
-Does NexPath automatically enhance prompts? — Supported automatic prompt enhancement can run without requiring the developer to approve every enhancement in advance. A six-second cancellation window allows the user to stop the automatic enhancement when necessary.
-What is Context Engineering? — Context Engineering helps make relevant project information available for the task at hand. NexPath's approach includes long-term context and pattern recognition intended to help retrieve useful information beyond the current conversation.
-Can I switch between different coding agents? — NexPath's multi-agent workflow direction supports working with different coding agents according to the task, while helping maintain relevant project context across transitions. The exact integrations and switching capabilities depend on the supported workflow.
-What does Data Privacy Mode do? — When correctly configured, Data Privacy Mode restricts supported model inference to designated internal models rather than external model APIs. Its exact guarantees depend on the implementation and the workflow being used.
-Can I use my own GPU? — Compatible local models can use supported GPU hardware. Performance and suitability depend on the GPU, available memory, model requirements, and the task.
-Can NexPath run testing and verification in the background? — Supported background workflows can help execute suitable tasks without requiring continuous attention. Developer input may still be needed when clarification, approval, or engineering judgment is required.
-Will background mode reduce my costs? — It can help reduce token expenditure when suitable tasks are handled by less expensive models or agents. Actual savings depend on the task, the models used, the pricing structure, and the amount of work delegated.
-Where are premium features available? — Premium features are currently available through the NexPath Desktop App. The Browser Extension, VS Code Extension, and CLI provide their respective supported functionality but should not be assumed to include the same premium capabilities.
-Is NexPath open source? — NexPath has an open-source foundation, with its available open-source functionality documented in the project repository. Additional Enterprise capabilities extend the experience for more demanding workflows.
-Does NexPath replace software testing or developer judgment? — No. NexPath can support verification workflows and help improve engineering guidance, but it does not eliminate the need for appropriate testing, review, and developer judgment.
-
-FINAL CTA — only create if the page has no closing CTA. Do not replace the current one.
-
-Headline: Build with better context. Automate the routine. Stay in control.
-Body: NexPath helps you work with AI coding agents more effectively through better prompts, relevant project context, privacy-focused local workflows, and background execution for suitable tasks. Keep your attention on the engineering decisions that matter while NexPath helps make the surrounding workflow more efficient.
-Primary CTA: Join Waitlist
-Secondary CTA: Explore GitHub
-Closing line: Better software engineering starts with a better way to work with AI.
+Constraints:
+- Older sections stay as they are.
+- Add only the three sections above.
+- Enterprise title stays exactly "ENTERPRISE PRIVACY & INTERNAL DEVICE NETWORK".
+- Each of the three new sections must have its own creative layout, distinct from each other and from the rest of the page.
+- Keep the page responsive.

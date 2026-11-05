@@ -1,0 +1,27 @@
+Set the attached image as the site favicon only.
+
+The file is `Input/brand/nexpath-favicon.png` (also attached in this chat). It is the NexPath mark: three pastel nodes (lilac, mint, cream) joined by a pale stem on a dark navy square.
+
+Do not place this image anywhere on the website. Do not add it to the header, nav, hero, footer, buttons, or any page section. Do not replace or restyle any logo that is already visible in the page layout. The only job is the browser icon and the icon Google shows in search results.
+
+Use this exact artwork. Keep the navy background and the three node colors. Do not redraw it, recolor it, or put it on a white or transparent background. Crop only the extra empty navy padding so the mark fills most of the square and still reads at 16px. Keep it square.
+
+Generate these files from that cropped mark and put them in `public/` so they are served from the site root:
+
+- `favicon.ico` (16, 32, and 48)
+- `favicon-32x32.png`
+- `favicon-48x48.png` (Google requires a multiple of 48px)
+- `apple-touch-icon.png` (180×180)
+- `android-chrome-192x192.png`
+- `android-chrome-512x512.png`
+- `site.webmanifest` with the 192 and 512 icons, name "NexPath", short_name "NexPath"
+
+On the homepage `<head>` (the root document head, so every route inherits it), set:
+
+- `<link rel="icon" href="/favicon.ico" sizes="any">`
+- `<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">`
+- `<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">`
+- `<link rel="apple-touch-icon" href="/apple-touch-icon.png">`
+- `<link rel="manifest" href="/site.webmanifest">`
+
+`/favicon.ico` must return 200 and must not be blocked by `robots.txt`. Google uses the favicon linked from the homepage for the browser tab and for the icon beside the site in search results. Do not change page titles, meta descriptions, or visible content.
